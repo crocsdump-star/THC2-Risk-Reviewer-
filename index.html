@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>THC2 Risk Review – Midterm Reviewer</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#fdf6f0;--card:#fff;--ink:#2b2230;--mute:#7a6f80;--pri:#c2477a;--pri2:#f3d3e2;--ok:#1f8a5b;--okbg:#dff3e9;--bad:#c23a3a;--badbg:#fbe0e0;--line:#eadfe6}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#1b1620;--card:#262030;--ink:#f1eaf4;--mute:#a79bb0;--pri:#e86aa0;--pri2:#43283a;--ok:#5fd6a0;--okbg:#1d3a2e;--bad:#ff8585;--badbg:#42232a;--line:#3a3145}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#1b1620;--card:#262030;--ink:#f1eaf4;--mute:#a79bb0;--pri:#e86aa0;--pri2:#43283a;--ok:#5fd6a0;--okbg:#1d3a2e;--bad:#ff8585;--badbg:#42232a;--line:#3a3145}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.5}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:1.7rem;margin:.2em 0 .1em}
+.sub{color:var(--mute);font-family:system-ui,sans-serif;font-size:.9rem;margin-bottom:16px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;font-family:system-ui,sans-serif}
+button{font:inherit;font-family:system-ui,sans-serif;cursor:pointer}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 14px;border-radius:999px;font-size:.9rem}
+.chip.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:12px;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.meta{font-family:system-ui,sans-serif;font-size:.8rem;color:var(--mute);display:flex;justify-content:space-between;margin-bottom:8px}
+.prog{height:6px;background:var(--pri2);border-radius:9px;overflow:hidden;margin-bottom:10px}
+.prog i{display:block;height:100%;background:var(--pri);width:0;transition:width .2s}
+.q{font-size:1.1rem;margin:6px 0 14px}
+.opt{display:block;width:100%;text-align:left;background:var(--bg);color:var(--ink);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;font-size:.98rem}
+.opt:hover:not([disabled]){border-color:var(--pri)}
+.opt.ok{background:var(--okbg);border-color:var(--ok)}
+.opt.bad{background:var(--badbg);border-color:var(--bad)}
+.opt.show{border-color:var(--ok);border-style:dashed}
+.nav{display:flex;gap:8px;margin-top:14px;justify-content:space-between}
+.btn{background:var(--pri);color:#fff;border:0;padding:10px 18px;border-radius:12px;font-size:.95rem}
+.btn.ghost{background:transparent;color:var(--pri);border:1.5px solid var(--pri)}
+.btn[disabled]{opacity:.4;cursor:default}
+.ans{margin-top:10px;padding:10px 12px;border-radius:10px;background:var(--okbg);color:var(--ink);font-size:.95rem}
+.big{font-size:2.6rem;text-align:center;margin:10px 0}
+.center{text-align:center}
+.miss{font-size:.92rem;border-top:1px solid var(--line);padding:10px 0}
+.miss b{color:var(--ok)}
+.fc{min-height:220px;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;border-radius:18px;background:var(--pri2);border:2px solid var(--pri);cursor:pointer;font-size:1.15rem}
+.fc.back{background:var(--okbg);border-color:var(--ok)}
+.ans.no{background:var(--pri2)}
+.opt.hl{background:var(--okbg);border-color:var(--ok);font-weight:600}
+.sq .opt{cursor:default}
+.b2{display:block;width:100%;margin:8px 0}
+.row{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-top:1px solid var(--line);font-family:system-ui,sans-serif;font-size:.9rem}
+.bars{display:flex;align-items:flex-end;gap:6px;height:100px;margin:22px 0 10px}
+.bars div{flex:1;background:var(--pri);border-radius:6px 6px 0 0;min-height:3px;position:relative}
+.bars span{position:absolute;top:-16px;left:0;right:0;text-align:center;font-size:.7rem;color:var(--mute)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>THC2 Risk Review</h1>
+  <div class="sub">Midterm reviewer for Wiku · 50 questions · Quiz, flashcards &amp; saved scores</div>
+  <div class="bar" id="modes"><button class="chip" data-m="quiz">Quiz</button><button class="chip" data-m="cards">Flashcards</button><button class="chip" data-m="list">Study sheet</button><button class="chip" data-m="hist">History</button><button class="chip" id="shuf">Shuffle: off</button></div>
+  <div id="app"></div>
+</div>
+<script>
+const D=[
+["Which statement best describes a vulnerability in facility risk assessment?",["An active attacker attempting to break into a building","The natural disasters that impact a geographical location","Weaknesses in the system, facility, or operational procedures that can be exploited by threats","The legal penalty imposed following a security breach"],2],
+["Which specific law penalizes the sale of adulterated and misbranded food (sausages sold without required stamps)?",["PD 856","RA 9275","RA 3720","RA 8749"],2],
+["Every two hours, a probe thermometer is inserted into roast beef and the reading is logged. Which HACCP principle is this?",["Principle 5","Principle 3","Principle 4","Principle 2"],2],
+["Which provision mandates the Philippine government to establish and maintain an effective food and drug regulatory system?",["1987 Constitution, Article XIII, Section XII","1987 Constitution, Article XIII, Section XIII","1987 Constitution, Article XIII, Section IV","1987 Constitution, Article XV, Section XIII"],0],
+["What is a threat?",["The financial loss resulting from poor customer service","A potential source of harm, danger, or unwanted disruption","A weakness in a physical structure or procedural protocol","An official warning issued by local authorities for building code violations"],1],
+["Which option best describes surveillance in safety and security operations?",["Establishing formal contracts with local law enforcement agencies","Conducting quarterly safety audits of fire extinguishers and emergency exits","Restricting physical entry to high-security vaults using keycards","The systematic observation and monitoring of people, activities, and facilities to detect and prevent security risks"],3],
+["Mia uses a board and unwashed knife for raw chicken, then chops fresh lettuce for a Caesar salad. What food-safety failure occurred?",["Cross-contamination","Physical hazard transfer","Chemical intoxication","Toxin-mediated infection"],0],
+["What temperature range is the “Food Danger Zone,” where bacteria double rapidly?",["0°C to 4°C (32°F to 40°F)","5°C to 60°C (40°F to 140°F)","60°C to 100°C (140°F to 212°F)","-18°C to 0°C (0°F to 32°F)"],1],
+["A steward lines the walk-in refrigerator’s wire shelves with aluminum foil. Why must he remove it?",["Foil blocks cold air circulation, creating warm pockets that encourage bacterial growth","Foil reacts with cold humidity to create toxic fumes","Foil draws moisture out of raw meats, inflating their water activity","Foil reflects light, stimulating mold spore germination"],0],
+["Dry food inventory must be elevated off the floor by at least:",["4 inches","12 inches","6 inches","2 inches"],2],
+["Illness after eating contaminated deli meats, unpasteurized milk, and soft cheeses is commonly associated with which bacterium?",["Listeria monocytogenes","Campylobacter jejuni","Bacillus cereus","Clostridium perfringens"],0],
+["Harmful microorganisms moving from one surface, food, or utensil to another is called:",["Physical hazard transfer","Cross-contamination","Chemical intoxication","Toxin-mediated infection"],1],
+["A sealed container of mango dessert syrup in a warm pantry has expanded, is bubbling, and smells of alcohol. Which microorganism is responsible?",["Salmonella bacteria","Mold","Obligate virus","Yeast"],3],
+["Braised beef contains Clostridium perfringens spores that survive cooking, germinate in the intestines, and produce toxins in the gut. How is this illness classified?",["Pure foodborne intoxication","Toxin-mediated infection","Chemical poisoning","Physical trauma"],1],
+["Color-coded receptacles (Biodegradable, Recyclable, Non-Recyclable, Hazardous) follow which Philippine law on source segregation?",["RA 3720","PD 856","RA 8749","RA 9003"],3],
+["Which nutrients do bacteria primarily need for speedy growth in food?",["Pure lipids/fats","Vitamins and minerals only","Carbohydrates and proteins","Calcium and minerals"],2],
+["A metallic fragment from a wire grill brush is found in a grilled steak. How is this contaminant classified?",["Toxin-mediated hazard","Physical hazard","Biological hazard","Chemical hazard"],1],
+["A fuzzy patch on bread and fruit that reproduces through airborne spores and can produce mycotoxins is:",["Viruses","Bacteria","Molds (Fungi)","Parasites"],2],
+["Isla eats food with live pathogenic bacteria that colonize her intestines, reproduce, and cause illness 24 hours later. What type of illness is this?",["Chemical intoxication","Foodborne infection","Allergic anaphylaxis","Foodborne intoxication"],1],
+["Cooked potato salad is left at room temperature. Staphylococcus aureus multiplies and releases heat-stable toxins; vomiting follows within 2 hours. What type of illness is this?",["Systemic parasitism","Toxin-mediated infection","Foodborne intoxication","Foodborne infection"],2],
+["Among the seven HACCP principles, which is Principle 3?",["Establish verification procedures","Conduct a hazard analysis","Establish critical limits","Determine critical control points (CCPs)"],2],
+["Cooked beef curry has sat at room temperature for over four hours. Per the F.A.T.T.O.M. time limit, what is the mandatory action?",["Transfer to a holding unit at 50°C (122°F)","Discard it immediately","Serve another hour with extra hot gravy","Flash-freeze for 20 minutes, then return to buffet"],1],
+["In safety planning for a coastal resort, how are typhoons and earthquakes classified?",["Threats","Policy deficiencies","Environmental controls","Vulnerabilities"],0],
+["Which Philippine statute regulates the discharge of commercial kitchen wastewater effluent?",["RA 8749","RA 9003","RA 9275","RA 3720"],2],
+["Guests get sick from hollandaise made with raw eggs contaminated with Salmonella enteritidis. How is Salmonella classified?",["Biological contaminant","Radiologic hazard","Physical contaminant","Chemical contaminant"],0],
+["Which statute regulates commercial air ventilation emissions in the Philippines?",["RA 9003","RA 9003","PD 856","RA 8749"],3],
+["Cooking raw chicken to 165°F (74°C) for 15 seconds is the step that eliminates Salmonella. Defining this limit fulfills which HACCP principle?",["Principle 2: Determine CCPs","Principle 5: Establish corrective actions","Principle 3: Establish critical limits","Principle 1: Conduct hazard analysis"],2],
+["What does HACCP stand for?",["Hazard Analysis and Control Critical Points","Hazard Analysis and Critical Control Points","Hazard Analyze and Control Critical Parts","Hazard Analyzation and Critical Controlization Points"],1],
+["An assistant’s electronic keycard for restricted executive offices goes missing. What is the most effective physical security control?",["Deactivate the lost keycard immediately in the access system","Change all physical door handles","Wait 24 hours to see if it turns up in lost-and-found","Issue a warning notice to all executive staff"],0],
+["To minimize microbial growth, frozen storage equipment must maintain what internal temperature?",["0°F (-18°C) or lower","32°F (0°C) or lower","20°F (-6°C) or lower","10°F (-12°C) or lower"],0],
+["Which CCTV placement complies with legal, ethical, and privacy standards?",["Guest room sleeping areas","Over loading docks, entrances, and hallways","Inside employee locker rooms","Inside guest rooms to prevent vandalism"],1],
+["Which category occurs when a person ingests food containing pre-formed microbial toxins that immediately disrupt bodily systems?",["Viral colonization","Systemic parasitism","Foodborne infection","Foodborne intoxication"],3],
+["Unlike bacteria, how do foodborne viruses behave?",["They produce high concentrations of heat-stable toxins in protein-rich foods","They multiply exponentially above water activity (aw) 0.85","They are destroyed by briefly lowering storage below 0°F (-18°C)","They require a living host (humans, shellfish) to replicate and cannot multiply in food itself"],3],
+["The word “Sanitation” comes from the Latin root “Sanitas,” which means:",["Health","Cleanliness","Disease","Water"],0],
+["The unintended presence of harmful bacteria, chemicals, or foreign substances in food, making it unsafe for consumption, is called:",["Sanitization","Contamination","HACCP","Pasteurization"],1],
+["An independent auditor reviews thermometer calibration records, evaluates CCP logs, and double-checks system effectiveness. Which HACCP principle is this?",["Principle 6","Principle 3","Principle 2","Principle 4"],0],
+["A single-celled organism consumes sugar and produces CO₂ to make dough rise, but causes alcohol-like spoilage in juices, sauces, and jellies. What is it?",["Virus","Yeast","Mold","Bacteria"],1],
+["Concentrated floor sanitizer, degreaser, and insect spray sit on an open shelf above the food prep table. What hazard is this, and what is the storage standard?",["Toxin-mediated hazard; dilute with water before placing near food","Chemical hazard; store in original labeled containers in a designated area away from food prep","Biological hazard; store inside the walk-in cooler","Physical hazard; store in metal crates under the sink"],1],
+["Temperature logs, staff sanitation training certificates, and supplier invoices are archived for inspectors. Which HACCP principle covers this?",["Principle 4","Principle 5","Principle 1","Principle 7"],3],
+["Samuel throws away one moldy slice and uses the rest of the loaf. Why is this a severe hazard?",["Mold spores convert starches into toxic alcohols within minutes","Mold produces heat-resistant spores that trigger viral replication in surrounding slices","Remaining slices drop in water activity, breeding obligate anaerobes","Microscopic hyphae and mycotoxins penetrate deep throughout the loaf before visible growth appears"],3],
+["What does physical security primarily mean?",["Protecting people and facilities from physical danger, structural damage, and unauthorized access","Setting pricing strategies to protect revenue","Conducting background checks during hiring","Encrypting digital databases against malware and ransomware"],0],
+["Kitchen staff panic and block emergency stairwells during a fire drill; management never conducted the mandatory evacuation training. What does the lack of training represent?",["Vulnerability","Physical barrier","Environmental control","Threat"],0],
+["Bacteria produce toxins after contaminated food is consumed, making people sick. What type of foodborne illness is this?",["Foodborne intoxication","Foodborne infection","Toxin-mediated infection","Foodborne bacteria"],2],
+["Which option best describes safety management in a hospitality context?",["A legal strategy to defend against labor lawsuits","A customer service protocol to raise guest satisfaction","A systematic process of protecting people, assets, and facilities from threats and vulnerabilities","A system exclusively for auditing financial records"],2],
+["Requiring hot soup to be held at or above 135°F (57°C) is an example of:",["Establishing monitoring procedures","Establishing critical limits","Establishing verification procedures","Conducting hazard analysis"],1],
+["Under PD 856 (Sanitation Code), which plumbing device must food-establishment kitchens install to keep grease from blocking municipal sewers?",["Grease traps","HEPA filters","Ultraviolet effluent purifiers","Automated chlorination units"],0],
+["A rear service door is propped open with a wedge; an opportunistic intruder slips in and steals equipment. How are they categorized?",["Both are system vulnerabilities","The door is a threat; the intruder is a crisis event","The door is a vulnerability; the intruder is a threat","Both are physical barriers"],2],
+["What are the four core pillars of the basic Food Protection Plan?",["Wash, Sanitize, Chill, Cook","Wash, Freeze, Thaw, Serve","Wash, Disinfect, Drain, Seal","Wash, Separate, Cook, Chill"],3],
+["Batch 101 (March 5) and Batch 102 (March 18) of canned tomato sauce arrive. Following FIFO, how should they be managed?",["Mix both randomly to equalize turnover","Batch 101 goes in front of Batch 102 so it is issued first","Move Batch 101 to freezer storage","Issue Batch 102 first because newer stock has superior nutrition"],1],
+["Clam chowder on a steam table drops to 120°F (49°C), so it is rapidly reheated to 165°F (74°C). Which HACCP principle was executed?",["Principle 1","Principle 6","Principle 5","Principle 3"],2]
+];
+const L="ABCD";
+const OKM=["Yes, galing! Keep it up! 🎉","Nice one, Wiku! You’ve got this. 🌟","Correct! Your hard work is showing. 💪"];
+const NOM=["Okay lang, that’s how we learn! Now you know it for next time. 💛","So close! Read the answer and you’ll remember it. 📖","Don’t worry, mistakes are part of reviewing. Keep going! 🌈","Hindi pa tapos, kaya mo ’to! 💪"];
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+let S={att:[],st:{},ses:null,fc:null,cards:{},shuf:false,mode:"quiz"};
+try{const r=localStorage.getItem("thc2v2");if(r)S=Object.assign(S,JSON.parse(r))}catch(e){}
+function save(){try{localStorage.setItem("thc2v2",JSON.stringify(S))}catch(e){}}
+const app=document.getElementById("app");
+const all=D.map((_,k)=>k);
+const sh=a=>{a=a.slice();for(let j=a.length-1;j>0;j--){const r=Math.floor(Math.random()*(j+1));[a[j],a[r]]=[a[r],a[j]]}return a};
+const missedL=()=>all.filter(n=>S.st[n]&&S.st[n].last==="w");
+const neverL=()=>all.filter(n=>!(S.st[n]&&S.st[n].r>0));
+let res=null,flip=false,banner="",armed=false;
+function render(){
+ document.querySelectorAll("#modes [data-m]").forEach(b=>b.classList.toggle("on",b.dataset.m===S.mode));
+ const s=document.getElementById("shuf");s.textContent="Shuffle: "+(S.shuf?"on":"off");s.classList.toggle("on",S.shuf);
+ ({quiz,cards,hist,list})[S.mode]();
+}
+function quiz(){
+ if(res)return result();
+ const s=S.ses;
+ if(!s){
+  app.innerHTML=`<div class="card center"><h2>Start a quiz</h2><div class="sub">Retake as often as you like. Every attempt is saved.</div>
+  <button class="btn b2" data-s="all">All 50 questions</button>
+  <button class="btn ghost b2" data-s="miss" ${missedL().length?"":"disabled"}>Missed last time (${missedL().length})</button>
+  <button class="btn ghost b2" data-s="never" ${neverL().length&&neverL().length<50?"":"disabled"}>Not yet answered correctly (${neverL().length})</button></div>`;
+  app.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>begin(b.dataset.s));
+  return}
+ const n=s.list[s.i],q=D[n],p=s.ans[s.i],ans=p!==undefined;
+ let h=`<div class="card"><div class="meta"><span>Question ${s.i+1} of ${s.list.length} <small>(#${n+1}) · ${s.lab}</small></span><span>Score: ${s.score}</span></div><div class="prog"><i style="width:${s.i/s.list.length*100}%"></i></div><p class="q">${q[0]}</p>`;
+ q[1].forEach((o,k)=>{let c="opt";if(ans){if(k===q[2])c+=" ok";else if(k===p)c+=" bad"}h+=`<button class="${c}" ${ans?"disabled":""} data-k="${k}"><b>${L[k]}.</b> ${o}</button>`});
+ if(ans)h+=`<div class="ans ${p===q[2]?"":"no"}"><b>${s.msgs[s.i]}</b><br>Answer: ${L[q[2]]}. ${q[1][q[2]]}</div>`;
+ h+=`<div class="nav"><button class="btn ghost" id="quit">Discard quiz</button><button class="btn" id="next" ${ans?"":"disabled"}>${s.i===s.list.length-1?"Finish":"Next →"}</button></div><div class="sub center" style="margin-top:10px">Progress saves automatically. You can close this and resume later.</div></div>`;
+ app.innerHTML=h;
+ app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+  if(ans)return;const k=+b.dataset.k,ok=k===q[2],t=S.st[n]||(S.st[n]={r:0,w:0});
+  s.ans[s.i]=k;
+  if(ok){s.score++;s.streak++;t.r++;t.last="r";s.msgs[s.i]=s.streak>=3?`That’s ${s.streak} in a row! You’re on fire! 🔥`:pick(OKM)}
+  else{s.streak=0;t.w++;t.last="w";s.msgs[s.i]=pick(NOM)}
+  save();render()});
+ document.getElementById("quit").onclick=()=>{S.ses=null;save();render()};
+ document.getElementById("next").onclick=()=>{
+  if(s.i===s.list.length-1){
+   const miss=s.list.filter((m,i)=>s.ans[i]!==D[m][2]);
+   S.att.push({d:Date.now(),s:s.score,t:s.list.length,l:s.lab});
+   res={s:s.score,t:s.list.length,miss};S.ses=null}else s.i++;
+  save();render();window.scrollTo(0,0)};
+}
+function begin(w,list){
+ const m=list||{all,miss:missedL(),never:neverL()}[w];
+ S.ses={list:S.shuf?sh(m):m.slice(),i:0,score:0,ans:{},msgs:{},streak:0,lab:{all:"All 50",miss:"Missed only",never:"Not yet correct"}[w]||"Retake"};
+ res=null;save();render();
+}
+function result(){
+ const p=Math.round(res.s/res.t*100);
+ const m=p>=90?["🌟","Outstanding, Wiku! You’re more than ready!"]:p>=75?["🎉","Great job! Almost perfect. One more round and you’ve got it!"]:p>=50?["💪","Good effort! You’re almost there. Review the misses and retake!"]:["💛","Okay lang! Let’s review the answers and retake. Every try makes you stronger."];
+ let h=`<div class="card center"><div class="big">${m[0]}</div><h2>${res.s} / ${res.t} (${p}%)</h2><p>${m[1]}</p><div class="sub">Saved to your History.</div>`;
+ if(res.miss.length)h+=`<button class="btn b2" id="rm">Retake missed only (${res.miss.length})</button>`;
+ h+=`<button class="btn ghost b2" id="nq">Start a new quiz</button></div>`;
+ if(res.miss.length)h+=`<div class="card"><h3>Review your misses</h3>`+res.miss.map(n=>`<div class="miss">#${n+1}. ${D[n][0]}<br><b>✔ ${L[D[n][2]]}. ${D[n][1][D[n][2]]}</b></div>`).join("")+`</div>`;
+ app.innerHTML=h;
+ const rm=document.getElementById("rm");if(rm)rm.onclick=()=>begin("x",res.miss);
+ document.getElementById("nq").onclick=()=>{res=null;render()};
+}
+function cards(){
+ const f=S.fc,again=all.filter(n=>S.cards[n]==="again"),got=all.filter(n=>S.cards[n]==="got");
+ if(!f){
+  app.innerHTML=(banner?`<div class="ans center">${banner}</div>`:"")+`<div class="card center"><h2>Flashcards</h2><div class="sub">Got it: ${got.length} · Review again: ${again.length} · New: ${50-got.length-again.length}</div>
+  <button class="btn b2" data-d="all">All 50 cards</button>
+  <button class="btn ghost b2" data-d="again" ${again.length?"":"disabled"}>Review-again pile (${again.length})</button>
+  <button class="btn ghost b2" data-d="new" ${50-got.length?"":"disabled"}>Everything not yet “Got it” (${50-got.length})</button>
+  <button class="btn ghost b2" id="rc" ${got.length+again.length?"":"disabled"}>Clear card marks</button></div>`;
+  app.querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>{
+   const m={all,again,new:all.filter(n=>S.cards[n]!=="got")}[b.dataset.d];
+   S.fc={list:S.shuf?sh(m):m.slice(),i:0};flip=false;banner="";save();render()});
+  document.getElementById("rc").onclick=()=>{S.cards={};banner="";save();render()};
+  return}
+ const n=f.list[f.i],q=D[n];
+ let h=`<div class="card"><div class="meta"><span>Card ${f.i+1} of ${f.list.length} <small>(#${n+1})</small></span><span>Got it: ${got.length}</span></div><div class="prog"><i style="width:${f.i/f.list.length*100}%"></i></div>
+ <div class="fc ${flip?"back":""}" id="fcard">${flip?`<div><small>Answer</small><br><b>${L[q[2]]}. ${q[1][q[2]]}</b></div>`:`<div>${q[0]}<br><small style="color:var(--mute)">Tap to flip</small></div>`}</div>`;
+ h+=flip?`<div class="nav"><button class="btn ghost" id="ag">↻ Review again</button><button class="btn" id="gt">✓ Got it</button></div>`:`<div class="nav"><button class="btn ghost" id="qf">Stop deck</button><button class="btn" id="fl">Flip</button></div>`;
+ app.innerHTML=h+`</div>`;
+ const fl=()=>{flip=!flip;render()};
+ document.getElementById("fcard").onclick=fl;
+ const mark=v=>{S.cards[n]=v;flip=false;if(f.i===f.list.length-1){S.fc=null;const g=all.filter(x=>S.cards[x]==="got").length;banner=`🎉 Deck finished! Got it: ${g} · Review again: ${all.filter(x=>S.cards[x]==="again").length}. Keep going, Wiku!`}else f.i++;save();render()};
+ if(flip){document.getElementById("ag").onclick=()=>mark("again");document.getElementById("gt").onclick=()=>mark("got")}
+ else{document.getElementById("fl").onclick=fl;document.getElementById("qf").onclick=()=>{S.fc=null;banner="";save();render()}}
+}
+function list(){
+ let h=`<div class="card center"><h2>Study sheet</h2><div class="sub">All 50 questions in a row, with the correct answer highlighted.</div><button class="btn ghost" id="hd">${S.hide?"Show all answers":"Hide answers (tap a question to reveal)"}</button></div>`;
+ all.forEach(n=>{const q=D[n],v=!S.hide;
+  h+=`<div class="card sq" data-n="${n}"><div class="meta"><span>#${n+1}</span></div><p class="q">${q[0]}</p>`+q[1].map((o,k)=>`<div class="opt ${v&&k===q[2]?"hl":""}"><b>${L[k]}.</b> ${o}${v&&k===q[2]?" ✔":""}</div>`).join("")+`</div>`});
+ app.innerHTML=h;
+ document.getElementById("hd").onclick=()=>{S.hide=!S.hide;save();render()};
+ app.querySelectorAll(".sq").forEach(c=>c.onclick=()=>{if(!S.hide)return;const o=c.querySelectorAll(".opt")[D[+c.dataset.n][2]],on=o.classList.toggle("hl");o.innerHTML=o.innerHTML.replace(" ✔","")+(on?" ✔":"")});
+}
+function hist(){
+ const a=S.att,fmt=d=>new Date(d).toLocaleString([],{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"});
+ const pc=x=>Math.round(x.s/x.t*100);
+ let h=`<div class="card"><h2>Your history</h2>`;
+ if(!a.length)h+=`<p class="sub">No quiz attempts yet. Finish a quiz and your score will show up here.</p>`;
+ else{
+  const best=Math.max(...a.map(pc)),avg=Math.round(a.reduce((t,x)=>t+pc(x),0)/a.length);
+  h+=`<div class="sub">Attempts: ${a.length} · Best: ${best}% · Average: ${avg}%</div><div class="bars">${a.slice(-10).map(x=>`<div style="height:${Math.max(pc(x),3)}%"><span>${pc(x)}</span></div>`).join("")}</div><div class="sub center">Last ${Math.min(10,a.length)} attempts (%)</div>`+
+  a.slice().reverse().map(x=>`<div class="row"><span>${fmt(x.d)} · ${x.l}</span><b>${x.s}/${x.t} (${pc(x)}%)</b></div>`).join("");
+ }
+ h+=`</div>`;
+ const top=all.filter(n=>S.st[n]&&S.st[n].w>0).sort((x,y)=>S.st[y].w-S.st[x].w).slice(0,10);
+ if(top.length)h+=`<div class="card"><h3>Most-missed questions</h3>`+top.map(n=>`<div class="miss">#${n+1}. ${D[n][0]}<br><small>Missed ${S.st[n].w}× · Correct ${S.st[n].r}×</small><br><b>✔ ${L[D[n][2]]}. ${D[n][1][D[n][2]]}</b></div>`).join("")+`</div>`;
+ h+=`<div class="card center"><button class="btn ghost" id="rs">${armed?"Tap again to erase everything":"Reset all progress"}</button></div>`;
+ app.innerHTML=h;
+ document.getElementById("rs").onclick=()=>{if(!armed){armed=true;render();return}armed=false;S={att:[],st:{},ses:null,fc:null,cards:{},shuf:S.shuf,mode:"hist"};res=null;save();render()};
+}
+document.querySelectorAll("#modes [data-m]").forEach(b=>b.onclick=()=>{S.mode=b.dataset.m;flip=false;armed=false;res=null;save();render()});
+document.getElementById("shuf").onclick=()=>{S.shuf=!S.shuf;save();render()};
+render();
+</script>
+</body>
+</html>
